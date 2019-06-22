@@ -10,11 +10,12 @@
 
 <body>
     <div id="app">
+        <input type="text" v-model="newTask">
         <ul>
             <li v-for="item in items">
                 <span v-if="item.done">✅</span>
                 <span v-if="!item.done">🔲</span>
-                - {{ item.name }}
+                {{ item.name }}
             </li>
         </ul>
     </div>
@@ -25,6 +26,8 @@
             el: '#app',
             data() {
                 return {
+                    newTask: '',
+
                     items: [{
                             id: 1,
                             name: 'Makan Nasi',
