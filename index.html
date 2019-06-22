@@ -9,8 +9,22 @@
 </head>
 
 <body>
-    Hello
+    <div id="app">
+        {{message}}
+    </div>
+    <!-- instalasi vue -->
     <script src="https://unpkg.com/vue"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    message: 'Hello Vue'
+                }
+            }
+        })
+    </script>
+
 
 </body>
 
