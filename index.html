@@ -17,6 +17,7 @@
                 <span v-if="item.done">✅</span>
                 <span v-if="!item.done">🔲</span>
                 {{ item.name }}
+                <button @click="remove(item)">&times;</button>
             </li>
         </ul>
     </div>
@@ -59,6 +60,10 @@
                         done: false,
                     })
                     this.newTask = ''
+                },
+                remove(item) {
+                    const index = this.items.indexOf(item)
+                    this.items.splice(index, 1)
                 }
             }
         })
