@@ -11,6 +11,7 @@
 <body>
     <div id="app">
         <input type="text" v-model="newTask">
+        <button @click="addTask">Add Task</button>
         <ul>
             <li v-for="item in items">
                 <span v-if="item.done">✅</span>
@@ -27,7 +28,6 @@
             data() {
                 return {
                     newTask: '',
-
                     items: [{
                             id: 1,
                             name: 'Makan Nasi',
@@ -51,6 +51,16 @@
                     ]
                 }
             },
+
+            methods: {
+                addTask() {
+                    this.items.push({
+                        name: this.newTask,
+                        done: false,
+                    })
+                    this.newTask = ''
+                }
+            }
         })
     </script>
 
