@@ -16,8 +16,11 @@
             <li v-for="item in items">
                 <span v-if="item.done">✅</span>
                 <span v-if="!item.done">🔲</span>
-                {{ item.name }}
+                <span v-if="!editId === item.id"> {{ item.name }} </span>
+
+                <input type="text" v-model="editTask" v-if="editId === item.id">
                 <button @click="remove(item)">&times;</button>
+                <button @click="edit(item)">Edit</button>
             </li>
         </ul>
     </div>
@@ -29,6 +32,9 @@
             data() {
                 return {
                     newTask: '',
+                    editTask: '',
+                    editId: null,
+
                     items: [{
                             id: 1,
                             name: 'Makan Nasi',
@@ -64,6 +70,11 @@
                 remove(item) {
                     const index = this.items.indexOf(item)
                     this.items.splice(index, 1)
+                },
+
+                edit(item) {
+                    this.editId = item.id
+                    this.editTask = item.name
                 }
             }
         })
