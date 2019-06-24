@@ -10,7 +10,7 @@
 
 <body>
     <div id="app">
-        <input type="text" v-model="newTask">
+        <input type="text" v-model="newTask" @keyup.enter="addTask">
         <button @click="addTask">Add Task</button>
         <ul>
             <li v-for="item in items">
