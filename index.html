@@ -13,14 +13,20 @@
         <input type="text" v-model="newTask" @keyup.enter="addTask">
         <button @click="addTask">Add Task</button>
         <ul>
-            <li v-for="item in items">
+            <li v-for="item in items" :key="item.id">
                 <span v-if="item.done">✅</span>
                 <span v-if="!item.done">🔲</span>
                 <span v-if="!editId === item.id"> {{ item.name }} </span>
 
                 <input type="text" v-model="editTask" v-if="editId === item.id">
-                <button @click="remove(item)">&times;</button>
-                <button @click="edit(item)">Edit</button>
+                <span v-if="!editId">
+                    <button @click="remove(item)">&times;</button>
+                    <button @click="edit(item)">Edit</button>
+                </span>
+                <span v-if="editId === item.id">
+                    <button @click="update(item)">Update</button>
+                    <button @click="cancel">Cancel</button>
+                </span>
             </li>
         </ul>
     </div>
@@ -75,6 +81,15 @@
                 edit(item) {
                     this.editId = item.id
                     this.editTask = item.name
+                },
+
+                update(item) {
+
+                },
+
+                cancel() {
+                    this.editId = ''
+                    this.editTask = ''
                 }
             }
         })
